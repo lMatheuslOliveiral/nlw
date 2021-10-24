@@ -1,5 +1,5 @@
 const links = {
-  github: "lMatheuslOliveira",
+  github: "lMatheuslOliveiral",
   youtube: "UCSuf3BBh7rlCv8o4r9Phy7A",
   facebook: "lmatheusloliveiral",
   instagram: "matheuzob",
@@ -12,14 +12,25 @@ function changeSocialMedia(){
    const social = li.getAttribute('class')
    
    li.children[0].href = `https://${social}.com/${links[social]}`
-   
-   alert(li.children[0].href)
 
   }
 }
 
 changeSocialMedia()
 
-function getGitHubProfileInfos(){
+function getGitHubProfileInfos() {
   const url = `https://api.github.com/users/${links.github}`
+
+  fetch(url)
+  .then(response => response.json())
+  .then(data => {
+    userName.textContent = data.name
+    userBio.textContent = data.bio
+    userGit.href = data.html_url
+    userImage.src = data.avatar_url
+    userLogin.textContent = data.login
+  })
+
 }
+
+getGitHubProfileInfos()
